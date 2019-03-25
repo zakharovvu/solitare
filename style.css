@@ -1,0 +1,54 @@
+body {
+    background: rgb(142, 228, 243);
+    margin: auto;
+}
+.deck {
+   
+    width: 100px;
+    height: 167px;
+    border: 1px solid rgb(255, 253, 253);
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 24px;
+    background: rgb(5, 139, 12);
+    margin-bottom: 10px;
+    user-select: none;
+}
+#game {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+   position: relative;
+}
+
+.partDeck {
+    position: absolute;
+    background: rgb(226, 216, 121);
+    width: 100px;
+    height: 175px;
+    border: 1px solid rgb(7, 0, 0);
+    border-radius: 10px;
+    padding: 3px;
+    font-size: 24px; 
+    
+}
+.red {
+    color: rgb(255, 2, 2);  
+}
+.black {
+    color: rgb(10, 10, 10);
+   
+}
+
+.selected {
+    box-shadow: 0px 0px 9px 5px rgba(250,5,123,1);
+}
+#reset {
+    margin: 5px;
+    font-size: 24px;
+    background: rgb(109, 110, 109);
+    box-shadow: 0px 0px 9px 5px rgb(26, 25, 25);
+    width: 115px;
+    color: aliceblue;
+    margin: 10px;
+}
