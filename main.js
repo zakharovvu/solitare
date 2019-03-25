@@ -128,7 +128,7 @@ game.addEventListener('click', function(event) {
             } else {
                 selectedCards.deck = numberdeck;
                 selectedCards.card = numbercard;
-                selectedCards.index = getIndexSelectCard(numberdeck, numbercard) || '';
+                selectedCards.index = getIndexSelectCard(numberdeck, numbercard);
                 selectedCards.color = arrSpreadsCards[numberdeck][numbercard].color;
                 selectedCards.suit = arrSpreadsCards[numberdeck][numbercard].suit;
             }
