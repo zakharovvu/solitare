@@ -4,14 +4,14 @@ body {
 }
 .deck {
    
-    width: 100px;
-    height: 167px;
+    width: 108px;
+    height: 160px;
     border: 1px solid rgb(255, 253, 253);
     border-radius: 10px;
-    padding: 10px;
+    padding-bottom: 22px;
     font-size: 24px;
     background: rgb(5, 139, 12);
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     user-select: none;
 }
 #game {
@@ -51,4 +51,18 @@ body {
     width: 115px;
     color: aliceblue;
     margin: 10px;
+}
+.zero {
+    color: rgb(5, 139, 12);
+    position: absolute;
+    opacity: 0;
+    width: 100px;
+    height: 175px;
+    border: 1px solid rgb(7, 0, 0);
+    border-radius: 10px;
+    padding: 3px;
+    font-size: 24px; 
+}
+.back {
+    background-image: url('fon.jpg')
 }

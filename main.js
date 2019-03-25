@@ -11,14 +11,13 @@ const AVAILABLE_SIGNS = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q',
 let arrIdDiv = Array(13).fill(null).map((_, i) => i).map(el => document.getElementById(`deck${el}`));
 let cards = getDeckOfCards();
 
-
 let arrDeckInField = function() { // заполняем масивы картами
     Array(6).fill('').map(_ => arrSpreadsCards.push([]));
     let start = [0, 1, 3, 6, 10, 15, 21];
     Array(7).fill('').map((_, i) => arrSpreadsCards.push(cards.splice(start[i], i + 1)));
     arrSpreadsCards[0] = [...cards]; 
 
-    arrSpreadsCards[0].push(new Card('', '', '', '', '', ''))
+    arrSpreadsCards[1].push(new Card('', '', '', '', '', ''))
  }
 
 arrDeckInField();
@@ -50,25 +49,34 @@ function spreadTheCards(numberDeck) { // раскладываем карты
     if (arrSpreadsCards[0].length === 0) {
         return
     }
-    arrIdDiv[numberDeck].innerHTML =  arrSpreadsCards[numberDeck].map((el, i) => `
-    ${arrSpreadsCards[numberDeck].length - 1 === i ? el.isVisible = true : ''}
+    let [clB, clR, clZ] = ['class="partDeck  black"', 'class="partDeck red"', 'class="zero"'];
+    
+    arrIdDiv[numberDeck].innerHTML =  arrSpreadsCards[numberDeck].map((el, i) => {
+        arrSpreadsCards[numberDeck].length - 1 === i ? el.isVisible = true : '';
+        arrSpreadsCards[0][arrSpreadsCards[0].length - 1].isVisible = false;
+        return `
         <div 
              data-numberdeck="${numberDeck}"
              data-numbercard="${i}"
-            ${el.color === 'R' ? 'class="partDeck red"' : 'class="partDeck  black"'}
+            ${el.color !== '' ? (el.color === 'R' ? clR : clB) : clZ}
         >   
             ${el.isVisible === true ? el.name : ''}
-        </div>`).join(' ')
+        </div>`}).join(' ')
 
         for (let i = 0; i < arrIdDiv[numberDeck].children.length; i++) {
             arrSpreadsCards[numberDeck][i].selected // добавляем класс только к выбраным
                 ? arrIdDiv[numberDeck].children[i].classList.add('selected') 
-                : arrIdDiv[numberDeck].children[i].classList.remove('selected')
+                : arrIdDiv[numberDeck].children[i].classList.remove('selected');
+            
+            !arrSpreadsCards[numberDeck][i].isVisible
+                ? arrIdDiv[numberDeck].children[i].classList.add('back') 
+                : arrIdDiv[numberDeck].children[i].classList.remove('back');
+
             if (numberDeck > 5) {
                 arrIdDiv[numberDeck].children[i].style = `top: ${addPx}px`;
             addPx += 28;
             } else {
-                arrIdDiv[numberDeck].children[i].style = `top: 5px`; 
+                arrIdDiv[numberDeck].children[i].style = `top: 1px`; 
             }
         }  
 }
@@ -159,7 +167,7 @@ function getIndexSelectCard(numberdeck, numbercard) {
     return AVAILABLE_SIGNS.findIndex((el) => sign === el)
 }
 
-function getPermissionMove(numberdeck, numbercard, count, currentDeck) {
+function getPermissionMove(numberdeck, numbercard, count) {
     
     // start проверка для верхних четырех стопок
     if ((selectedCards.card !== undefined)
@@ -221,7 +229,6 @@ function getPermissionMove(numberdeck, numbercard, count, currentDeck) {
 }
 
 reset.addEventListener('click', () => {
-    console.log('dfdf')
     arrSpreadsCards = [];
     cards = getDeckOfCards();
     getDeckOfCards();
